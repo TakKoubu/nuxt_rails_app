@@ -9,7 +9,7 @@ module Api
     end
 
     def create
-      user = User.new
+      user = User.new(user_params)
       # binding.pry
       if user.save
         render json: user
@@ -36,7 +36,7 @@ module Api
     private
 
     def user_params
-      params.require(:user).permit(:id, :name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:id, :email, :password, :password_confirmation)
     end
   end
 end
