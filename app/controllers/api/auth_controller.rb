@@ -3,9 +3,9 @@ module Api
     def login
       user = User.find_by(email: params[:email])
       if user && user.authenticate(params[:password])
-        payload = {user_id: user.id,email: user.email}
+        payload = { user_id: user.id,email: user.email }
         token = encode_token(payload)
-        render json: {jwt: token,success: "Welcome back, #{user.email}"}
+        render json: { jwt: token,success: "Welcome back, #{user.email }"}
       else
         response_unauthorized
       end

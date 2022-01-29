@@ -13,9 +13,9 @@ module Api
       if user.save
         payload = {user_id: user.id}
         token = encode_token(payload)
-        render json: {user: user.id, jwt: token}
+        render json: { user: user.id, jwt: token }
       else
-        render json: {errors: user.errors.full_messages},status: :not_acceptable
+        render json: { errors: user.errors.full_messages },status: :not_acceptable
       end
     end
 
