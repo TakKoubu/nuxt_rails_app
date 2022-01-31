@@ -9,3 +9,9 @@ User.create!(email: 'test1@email.com',password: "foobar1", password_confirmation
 User.create!(email: 'test2@email.com',password: "foobar2", password_confirmation: "foobar2")
 User.create!(email: 'test3@email.com',password: "foobar3", password_confirmation: "foobar3")
 User.create!(email: 'test4@email.com',password: "foobar4", password_confirmation: "foobar4")
+
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(5)
+  users.each { |user| user.memos.create!(content: content) }
+end
