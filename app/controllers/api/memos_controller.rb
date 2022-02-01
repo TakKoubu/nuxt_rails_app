@@ -3,7 +3,7 @@ module Api
     def index
       render json: Memo.all
     end
-    
+
     def create
       memo = Memo.new(memo_params)
       if @memo.save

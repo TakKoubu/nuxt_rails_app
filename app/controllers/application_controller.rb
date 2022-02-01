@@ -23,7 +23,6 @@ class ApplicationController < ActionController::API
 
   def decoded_token
     if auth_header
-      # binding.pry
       token = auth_header.split(' ')[1]
       begin
         JWT.decode(token, 'my_secret_key', true,algorithm: 'HS256')
