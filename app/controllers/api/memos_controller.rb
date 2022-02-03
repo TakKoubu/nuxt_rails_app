@@ -7,8 +7,6 @@ module Api
     def create
       memo = Memo.new(memo_params)
       memo.user_id = 1
-      memo.content.to_s
-      binding.pry
       if memo.save
         render json: memo
       else
