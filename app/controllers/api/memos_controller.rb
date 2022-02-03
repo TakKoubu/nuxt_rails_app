@@ -6,7 +6,7 @@ module Api
 
     def create
       memo = Memo.new(memo_params)
-      if @memo.save
+      if memo.save
         render json: memo
       else
         render json: memo.errors, status: 422
@@ -22,7 +22,7 @@ module Api
     private
 
     def memo_params
-      params.require(:memo).permit(:content)
+      params.require(:memo).permit(:id, :content)
     end
   end
 end
