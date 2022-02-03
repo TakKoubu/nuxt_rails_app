@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   namespace 'api' do
     resources :users, only: [:index, :show, :create, :update, :destroy] do
       member do
