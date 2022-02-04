@@ -1,5 +1,5 @@
 module Api
-  class FavoritesController < ApplicationController
+  class GoodwillsController < ApplicationController
 
     def create
       memo = Memo.find(params[:like_id])

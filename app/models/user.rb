@@ -6,20 +6,20 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :memos, dependent: :destroy
-  has_many :favorites
-  has_many :likes, through: :favorites, source: :like
-  has_many :reverses_of_favorite, class_name: 'Favorite', foreign_key: 'like_id'
-  has_many :likers, through: :reverses_of_favorite, source: :user
+  has_many :goodwills
+  has_many :likes, through: :goodwills, source: :like
+  has_many :reverses_of_goodwill, class_name: 'Goodwill', foreign_key: 'like_id'
+  has_many :likers, through: :reverses_of_goodwill, source: :user
 
   def like(other_memo)
     unless self == other_memo
-      self.favorites.find_or_create_by(like_id: other_memo.id)
+      self.goodwills.find_or_create_by(like_id: other_memo.id)
     end
   end
 
   def unlike(other_memo)
-    favorite = self.favorites.find_by(like_id: other_memo.id)
-    favorite.destroy if favorite
+    goodwill = self.goodwills.find_by(like_id: other_memo.id)
+    goodwill.destroy if goodwill
   end
 
   def liking?(other_memo)
