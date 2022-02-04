@@ -16,7 +16,6 @@ module Api
     def destroy
       memo = Memo.find(params[:id])
       memo.destroy!
-      render json: memo
     end
 
     private
