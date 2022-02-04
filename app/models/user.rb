@@ -7,16 +7,16 @@ class User < ApplicationRecord
 
   has_many :memos, dependent: :destroy
   has_many :goodwills
-  has_many :likes, through: :goodwills, source: :like
-  has_many :reverses_of_goodwill, class_name: 'Goodwill', foreign_key: 'like_id'
+  has_many :likes, through: :goodwills, source: :memo
+  has_many :reverses_of_goodwill, class_name: 'Goodwill', foreign_key: 'memo_id'
   has_many :likers, through: :reverses_of_goodwill, source: :user
 
   def like(other_memo)
-    self.goodwills.find_or_create_by(like_id: other_memo.id)
+    self.goodwills.find_or_create_by(memo_id: other_memo.id)
   end
 
   def unlike(other_memo)
-    goodwill = self.goodwills.find_by(like_id: other_memo.id)
+    goodwill = self.goodwills.find_by(memo_id: other_memo.id)
     goodwill.destroy if goodwill
   end
 
