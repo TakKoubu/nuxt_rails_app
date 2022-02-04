@@ -12,9 +12,7 @@ class User < ApplicationRecord
   has_many :likers, through: :reverses_of_goodwill, source: :user
 
   def like(other_memo)
-    unless self == other_memo
-      self.goodwills.find_or_create_by(like_id: other_memo.id)
-    end
+    self.goodwills.find_or_create_by(like_id: other_memo.id)
   end
 
   def unlike(other_memo)

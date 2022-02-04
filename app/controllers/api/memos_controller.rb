@@ -1,7 +1,7 @@
 module Api
   class MemosController < ApplicationController
     def index
-      render json: Memo.all
+      render json: Memo.includes(:goodwills).all.to_json(methods: :goodwill_count)
     end
 
     def create

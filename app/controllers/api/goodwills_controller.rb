@@ -5,7 +5,6 @@ module Api
       memo = Memo.find(params[:like_id])
       user = User.find(1)
       user.like(memo)
-      flash[:success] = 'memoをlikeしました。'
     end
 
     def destroy
