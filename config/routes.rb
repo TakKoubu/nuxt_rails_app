@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         get :likers
       end
     end
-    resources :memos, only: [:index, :create, :destroy]
+    resources :memos, only: [:index, :create]
     post "/login", to: "auth#login"
     get "/auto_login", to: "auth#auto_login"
 

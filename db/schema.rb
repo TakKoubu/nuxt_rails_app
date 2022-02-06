@@ -14,10 +14,10 @@ ActiveRecord::Schema.define(version: 2022_02_03_051320) do
 
   create_table "goodwills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "like_id", null: false
+    t.bigint "memo_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["like_id"], name: "index_goodwills_on_like_id"
+    t.index ["memo_id"], name: "index_goodwills_on_memo_id"
     t.index ["user_id"], name: "index_goodwills_on_user_id"
   end
 
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2022_02_03_051320) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "goodwills", "memos", column: "like_id"
   add_foreign_key "goodwills", "users"
   add_foreign_key "memos", "users"
 end

@@ -1,12 +1,11 @@
 module Api
   class MemosController < ApplicationController
     def index
-      render json: Memo.all
+      render json: Memo.includes(:goodwills).all.to_json(methods: :goodwill_count)
     end
 
     def create
       memo = Memo.new(memo_params)
-      memo.user_id = 1
       if memo.save
         render json: memo
       else
@@ -17,13 +16,12 @@ module Api
     def destroy
       memo = Memo.find(params[:id])
       memo.destroy!
-      render json: memo
     end
 
     private
 
     def memo_params
-      params.require(:memo).permit(:content)
+      params.require(:memo).permit(:content, :user_id)
     end
   end
 end
