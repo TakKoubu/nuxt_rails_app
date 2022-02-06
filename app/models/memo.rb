@@ -1,6 +1,6 @@
 class Memo < ApplicationRecord
   belongs_to :user
-  has_many :goodwills, class_name: 'Goodwill', foreign_key: 'memo_id'
+  has_many :goodwills, class_name: 'Goodwill'
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }

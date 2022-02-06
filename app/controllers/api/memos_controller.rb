@@ -21,7 +21,7 @@ module Api
     private
 
     def memo_params
-      params.require(:memo).permit(:content)
+      params.require(:memo).permit(:content, :user_id)
     end
   end
 end
